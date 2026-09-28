@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>韩国日本2026路书</title>
+    <!-- 引入 Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      :root {
+          --bg-color: #FDFCF7; /* 温暖的米黄信纸色 */
+          --card-bg: #FFFFFF;
+          --text-color: #3D3D3D;
+          --text-light: #9A9A9A;
+          --highlight-color: #0A9396; /* 清新蓝绿色 */
+          --border-color: #EAEAEA;
+      }
+
+      @font-face {
+          font-family: 'MiSans';
+          src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Bold.woff2') format('woff2');
+          font-weight: bold;
+      }
+
+      @font-face {
+          font-family: 'MiSans';
+          src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Regular.woff2') format('woff2');
+          font-weight: normal;
+      }
+      
+      html {
+          scroll-behavior: smooth;
+      }
+
+      body {
+          font-family: 'MiSans', "PingFang SC", "Microsoft YaHei", sans-serif;
+          margin: 0;
+          padding: 20px 15px;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          line-height: 1.8;
+      }
+
+      .main-container {
+          max-width: 800px;
+          margin: 0 auto;
+      }
+
+      .main-header {
+          text-align: center;
+          margin-bottom: 30px;
+      }
+
+      .main-header h1 {
+          font-size: 2.8rem;
+          font-weight: bold;
+          margin: 0;
+          line-height: 1.2;
+      }
+
+      .main-header p {
+          font-size: 1rem;
+          color: var(--text-light);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-top: 5px;
+      }
+      
+      /* -- Navigation Directory -- */
+      .directory-nav {
+          margin-bottom: 40px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .directory-nav-row {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 15px;
+         margin-bottom: 15px;
+      }
+
+      .nav-card {
+          background: #f0f0f0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          padding: 12px 25px;
+          border-radius: 25px;
+          text-decoration: none;
+          color: var(--text-color);
+          font-weight: bold;
+          transition: all 0.3s ease;
+          font-size: 0.95rem;
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+      }
+
+      .nav-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          color: var(--highlight-color);
+      }
+      
+      .day-card {
+          background-color: var(--card-bg);
+          border-radius: 16px;
+          padding: 25px;
+          margin-bottom: 25px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+          position: relative;
+          overflow: hidden;
+          border: 1px solid var(--border-color);
+      }
+
+      .day-number-bg {
+          position: absolute;
+          top: -20px;
+          right: 10px;
+          font-size: 9rem;
+          font-weight: bold;
+          color: rgba(0, 0, 0, 0.04);
+          z-index: 0;
+          user-select: none;
+      }
+
+      .card-header {
+          position: relative;
+          z-index: 1;
+          margin-bottom: 25px;
+      }
+
+      .card-header h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin: 0;
+          color: var(--text-color);
+      }
+
+      .card-header p {
+          font-size: 0.9rem;
+          color: var(--text-light);
+          margin: 5px 0 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+      }
+      
+      .card-body ul {
+          list-style: none;
+          padding-left: 0;
+          position: relative;
+          z-index: 1;
+      }
+      
+      .card-body li {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 15px;
+          font-size: 0.95rem;
+      }
+      
+      .card-body li a {
+          color: var(--highlight-color);
+          font-weight: bold;
+          text-decoration: none;
+          border-bottom: 1px solid transparent;
+          transition: border-bottom 0.3s;
+      }
+
+      .card-body li a:hover {
+          border-bottom: 1px solid var(--highlight-color);
+      }
+
+      .card-body li i {
+          margin-right: 15px;
+          margin-top: 5px;
+          color: var(--highlight-color);
+          width: 20px;
+          text-align: center;
+      }
+      
+      .card-body li strong {
+          font-weight: bold;
+          color: #000;
+      }
+      
+      .attraction-details {
+          position: relative;
+          z-index: 1;
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid var(--border-color);
+      }
+      
+      .attraction-details h4 {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--highlight-color);
+          margin-bottom: 5px;
+      }
+      
+      .attraction-details p {
+          margin: 0 0 15px 0;
+          font-size: 0.9rem;
+          color: #555;
+          padding-left: 10px;
+          border-left: 2px solid #EAEAEA;
+      }
+      
+      .attraction-details-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 5px;
+      }
+
+      .attraction-details-flex h4 {
+           margin: 0;
+      }
+
+      .highlight {
+          background-color: #fffbe6;
+          padding: 20px;
+          border-radius: 8px;
+          border-left: 5px solid #faad14;
+          margin: 20px 0;
+          position: relative;
+          z-index: 1;
+      }
+      .highlight strong {
+          color: #d46b08;
+      }
+      
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 25px 0;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          position: relative;
+          z-index: 1;
+      }
+
+      th, td {
+          border: 1px solid #dee2e6;
+          padding: 12px;
+          text-align: left;
+      }
+
+      th {
+          background-color: #e9ecef;
+          font-weight: bold;
+      }
+      
+      .image-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+      }
+      .image-container img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      .section-header {
+          margin-top: 50px;
+          padding-top: 20px;
+          border-top: 2px dashed var(--border-color);
+      }
+
+      .shinkansen-list {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 15px;
+      }
+
+      .shinkansen-list li {
+          margin-bottom: 10px;
+          padding: 10px;
+          background-color: #f5f5f5;
+          border-radius: 8px;
+          border: 1px solid #eee;
+      }
+      
+      .hotel-list {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 30px;
+      }
+      
+      .hotel-list li {
+          margin-bottom: 25px;
+      }
+      
+      .hotel-info-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+      }
+      
+      .hotel-info-group p {
+           margin: 0;
+      }
+      
+      .hotel-date {
+          font-size: 1rem;
+          color: var(--text-color);
+          font-weight: bold;
+          display: flex;
+          align-items: flex-start;
+      }
+      
+      .hotel-date i {
+           margin-right: 10px;
+           color: var(--highlight-color);
+      }
+      
+      .hotel-name {
+           font-size: 0.95rem; 
+      }
+      
+      .hotel-name a {
+          color: #FFAA00; 
+          font-weight: bold;
+          text-decoration: none;
+      }
+      
+      .hotel-name a:hover {
+           text-decoration: underline;
+      }
+
+      .calendar {
+           display: grid;
+           grid-template-columns: repeat(7, 1fr);
+           gap: 5px;
+           margin-top: 20px;
+           font-size: 0.85rem;
+           text-align: center;
+      }
+
+      .calendar-header {
+           grid-column: 1 / -1;
+           font-weight: bold;
+           font-size: 1rem;
+           margin-bottom: 10px;
+      }
+
+      .day-name {
+           font-weight: bold;
+           color: var(--text-light);
+      }
+      
+      .day-cell {
+           padding: 8px;
+           border-radius: 8px;
+           background-color: #f0f0f0;
+           color: var(--text-color);
+           position: relative;
+           overflow: hidden;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+      }
+      
+      .day-cell span {
+          position: relative;
+          z-index: 2;
+          font-weight: bold;
+      }
+
+      .day-cell::after {
+          content: attr(data-city);
+          position: absolute;
+          bottom: 5px;
+          right: 8px;
+          font-size: 1.0rem;
+          font-weight: 800;
+          color: rgba(0, 0, 0, 0.12);
+          z-index: 1;
+          user-select: none;
+          white-space: nowrap;
+      }
+      
+      .day-highlight-hiroshima { background-color: rgba(10, 147, 150, 0.2); }
+      .day-highlight-onomichi { background-color: rgba(255, 170, 0, 0.2); }
+      .day-highlight-fukuyama { background-color: rgba(255, 100, 100, 0.2); }
+      .day-highlight-shimonoseki { background-color: rgba(100, 150, 255, 0.2); }
+      .day-highlight-beppu { background-color: rgba(255, 180, 50, 0.2); }
+      .day-highlight-fukuoka { background-color: rgba(50, 200, 100, 0.2); }
+
+
+      /* 日期左上、城市右下，字号保持原样 */
+      .day-cell {
+          display: block;
+          min-height: 48px;
+          padding: 0;
+      }
+
+      .day-cell span {
+          position: absolute;
+          top: 8px;
+          left: 8px;
+          line-height: 1;
+          z-index: 2;
+          font-weight: bold;
+      }
+
+      .day-cell::after {
+          bottom: 7px;
+          right: 8px;
+          line-height: 1;
+      }
+
+
+      /* 每个城市独立色块 */
+      .day-highlight-seoul { background-color: rgba(10, 147, 150, 0.20); }
+      .day-highlight-gyeongju { background-color: rgba(255, 170, 0, 0.20); }
+      .day-highlight-busan { background-color: rgba(255, 100, 100, 0.20); }
+      .day-highlight-saga { background-color: rgba(100, 150, 255, 0.20); }
+      .day-highlight-sasebo { background-color: rgba(255, 210, 70, 0.22); }
+      .day-highlight-nagasaki { background-color: rgba(170, 110, 230, 0.18); }
+      .day-highlight-kumamoto { background-color: rgba(50, 200, 100, 0.20); }
+      .day-highlight-fukuoka-unique { background-color: rgba(60, 190, 220, 0.20); }
+      .day-highlight-xian { background-color: rgba(210, 140, 80, 0.22); }
+
+
+      .hotel-info-group .hotel-address {
+          margin-top: 6px;
+          font-size: 0.9rem;
+          color: #666;
+          line-height: 1.55;
+      }
+
+      .hotel-map {
+          width: 100%;
+          max-width: 520px;
+          margin-top: 12px;
+      }
+
+      .hotel-map img {
+          display: block;
+          width: 100%;
+          height: auto;
+          border: 1px solid var(--border-color);
+          border-radius: 10px;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      }
+
+
+      .group-divider {
+          text-align: center;
+          margin: 50px 0 25px;
+      }
+      .group-divider span {
+          display: inline-block;
+          padding: 8px 26px;
+          border-radius: 999px;
+          background: rgba(10, 147, 150, 0.10);
+          color: var(--highlight-color);
+          font-weight: bold;
+          letter-spacing: 3px;
+          font-size: 0.95rem;
+      }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="main-header">
+            <h1>韩国日本路书</h1>
+            <p>KOREA &amp; JAPAN ROADBOOK</p>
+        </header>
+
+        <nav class="directory-nav">
+            <div class="directory-nav-row">
+                <a href="#flight-section" class="nav-card">航班</a>
+                <a href="#accommodation-section" class="nav-card">住宿</a>
+            </div>
+            <div class="directory-nav-row">
+                <a href="#seoul-section" class="nav-card">首尔</a>
+                <a href="#gyeongju-section" class="nav-card">庆州</a>
+                <a href="#busan-section" class="nav-card">釜山</a>
+            </div>
+            <div class="directory-nav-row">
+                <a href="#saga-section" class="nav-card">佐贺</a>
+                <a href="#sasebo-section" class="nav-card">佐世保</a>
+                <a href="#nagasaki-section" class="nav-card">长崎</a>
+                <a href="#kumamoto-section" class="nav-card">熊本</a>
+                <a href="#fukuoka-section" class="nav-card">福冈</a>
+            </div>
+        </nav>
+
+        <section id="flight-section">
+            <div class="day-card">
+                <div class="day-number-bg">FLIGHT</div>
+                <div class="card-header">
+                    <h2>航班信息</h2>
+                    <p>FLIGHT SCHEDULE</p>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><i class="fas fa-plane-departure"></i><div><strong>9月29日（周二）西安 → 首尔</strong><br>韩亚航空 OZ348｜13:10 西安咸阳 → 17:00 首尔仁川 T2</div></li>
+                        <li><i class="fas fa-plane-departure"></i><div><strong>10月7日（周三）釜山 → 福冈</strong><br>釜山航空 BX146｜14:00 釜山金海国际 → 14:55 福冈</div></li>
+                        <li><i class="fas fa-plane-arrival"></i><div><strong>10月19日（周一）福冈 → 上海浦东</strong><br>东方航空 MU5088｜18:15 福冈 → 18:50 上海浦东 T1</div></li>
+                        <li><i class="fas fa-plane-arrival"></i><div><strong>10月19日（周一）上海浦东 → 西安</strong><br>东方航空 MU2193｜21:30 上海浦东 T1 → 23:55 西安咸阳 T5</div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="accommodation-section">
+            <div class="day-card">
+                <div class="day-number-bg">HOTEL</div>
+                <div class="card-header">
+                    <h2>住宿日历</h2>
+                    <p>ACCOMMODATION PLAN</p>
+                </div>
+                <div class="card-body">
+                    <h3 style="text-align: center;">2026年9月29日～10月19日</h3>
+                    <div class="calendar">
+                        <div class="calendar-header">住宿城市一览</div>
+                        <div class="day-name">Mon</div>
+                        <div class="day-name">Tue</div>
+                        <div class="day-name">Wed</div>
+                        <div class="day-name">Thu</div>
+                        <div class="day-name">Fri</div>
+                        <div class="day-name">Sat</div>
+                        <div class="day-name">Sun</div>
+<div></div>
+<div class="day-cell day-highlight-seoul" data-city="首尔"><span>29</span></div>
+<div class="day-cell day-highlight-seoul" data-city="首尔"><span>30</span></div>
+<div class="day-cell day-highlight-seoul" data-city="首尔"><span>1</span></div>
+<div class="day-cell day-highlight-gyeongju" data-city="庆州"><span>2</span></div>
+<div class="day-cell day-highlight-gyeongju" data-city="庆州"><span>3</span></div>
+<div class="day-cell day-highlight-busan" data-city="釜山"><span>4</span></div>
+<div class="day-cell day-highlight-busan" data-city="釜山"><span>5</span></div>
+<div class="day-cell day-highlight-busan" data-city="釜山"><span>6</span></div>
+<div class="day-cell day-highlight-saga" data-city="佐贺"><span>7</span></div>
+<div class="day-cell day-highlight-saga" data-city="佐贺"><span>8</span></div>
+<div class="day-cell day-highlight-sasebo" data-city="佐世保"><span>9</span></div>
+<div class="day-cell day-highlight-nagasaki" data-city="长崎"><span>10</span></div>
+<div class="day-cell day-highlight-nagasaki" data-city="长崎"><span>11</span></div>
+<div class="day-cell day-highlight-nagasaki" data-city="长崎"><span>12</span></div>
+<div class="day-cell day-highlight-nagasaki" data-city="长崎"><span>13</span></div>
+<div class="day-cell day-highlight-kumamoto" data-city="熊本"><span>14</span></div>
+<div class="day-cell day-highlight-kumamoto" data-city="熊本"><span>15</span></div>
+<div class="day-cell day-highlight-fukuoka-unique" data-city="福冈"><span>16</span></div>
+<div class="day-cell day-highlight-fukuoka-unique" data-city="福冈"><span>17</span></div>
+<div class="day-cell day-highlight-fukuoka-unique" data-city="福冈"><span>18</span></div>
+<div class="day-cell day-highlight-xian" data-city="西安"><span>19</span></div>
+                    </div>
+
+                    <ul class="hotel-list">
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>9月29日～10月1日（3晚）</p>
+        <p>首尔</p>
+        <p class="hotel-name"><a href="https://www.marriott.com/en-us/hotels/selox-moxy-seoul-insadong/overview" target="_blank" rel="noopener">Moxy Seoul Insadong</a></p>
+        <p class="hotel-address">📍 37, Donhwamun-ro 11-gil, Jongno-gu, Seoul, Republic of Korea, 03139</p>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月2日～10月3日（2晚）</p>
+        <p>庆州</p>
+        <p class="hotel-name"><a href="https://www.agoda.com/zh-hk/h34835682/hotel/gyeongju-si-kr.html?cid=1844104&amp;ds=zpMN5NX7mmaLrOnT" target="_blank" rel="noopener">慶州丹巴斯塔遺產酒店（Denbasta Heritage Hotel Gyeongju）</a></p>
+        <p class="hotel-address">📍 No. 20, Taegjong-ro 691, South Korea</p>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月4日～10月6日（3晚）</p>
+        <p>釜山</p>
+        <p class="hotel-name"><a href="https://www.agoda.com/zh-hk/h-avenue-munhyeon-branch-munhyeon-dong-busan/hotel/busan-kr.html?countryId=212&amp;finalPriceView=1&amp;isShowMobileAppPrice=false&amp;cid=1844104&amp;numberOfBedrooms=&amp;familyMode=false&amp;adults=2&amp;children=0&amp;rooms=1&amp;maxRooms=0&amp;checkIn=2026-09-28&amp;isCalendarCallout=false&amp;childAges=&amp;numberOfGuest=0&amp;missingChildAges=false&amp;travellerType=1&amp;showReviewSubmissionEntry=false&amp;currencyCode=SGD&amp;isFreeOccSearch=false&amp;flightSearchCriteria=%5Bobject+Object%5D&amp;los=1&amp;searchrequestid=d72dd400-2b67-449c-85e6-7a00a3740f29&amp;ds=zpMN5NX7mmaLrOnT" target="_blank" rel="noopener">H大道酒店 - 文賢（H. Avenue Hotel Moonhyun）</a></p>
+        <p class="hotel-address">📍 90, Jayupyeonghwa-ro 60beon-gil, 西面, 釜山, 韓國, 48402</p>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月7日～10月8日（2晚）</p>
+        <p>佐贺</p>
+        <p class="hotel-name"><a href="https://www.toyoko-inn.com/china_cn/search/detail/00045/" target="_blank" rel="noopener">东横INN 佐贺站前</a></p>
+        <div class="hotel-map"><img src="assets/hotels/toyoko-saga.png" alt="东横INN 佐贺站前位置图"></div>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月9日（1晚）</p>
+        <p>佐世保</p>
+        <p class="hotel-name"><a href="https://www.toyoko-inn.com/china_cn/search/detail/00187/" target="_blank" rel="noopener">东横INN 佐世保站前</a></p>
+        <div class="hotel-map"><img src="assets/hotels/toyoko-sasebo.png" alt="东横INN 佐世保站前位置图"></div>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月10日～10月13日（4晚）</p>
+        <p>长崎</p>
+        <p class="hotel-name"><a href="https://www.toyoko-inn.com/china_cn/search/detail/00079/" target="_blank" rel="noopener">东横INN 长崎站前</a></p>
+        <div class="hotel-map"><img src="assets/hotels/toyoko-nagasaki.png" alt="东横INN 长崎站前位置图"></div>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月14日～10月15日（2晚）</p>
+        <p>熊本</p>
+        <p class="hotel-name"><a href="https://www.toyoko-inn.com/china_cn/search/detail/00168/" target="_blank" rel="noopener">东横INN 熊本站前</a></p>
+        <div class="hotel-map"><img src="assets/hotels/toyoko-kumamoto.png" alt="东横INN 熊本站前位置图"></div>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月16日～10月18日（3晚）</p>
+        <p>福冈</p>
+        <p class="hotel-name"><a href="https://www.booking.com/hotel/jp/comfort-hakata.zh-cn.html?chal_t=1790599337601&amp;force_referer=" target="_blank" rel="noopener">博多舒适酒店（Comfort Hotel Hakata）</a></p>
+        <p class="hotel-address">📍 2 Chome-1-1 Hakata Ekimae, Hakata Ward, Fukuoka, 812-0011日本</p>
+    </div>
+</li>
+<li>
+    <div class="hotel-info-group">
+        <p class="hotel-date"><i class="fas fa-hotel"></i>10月19日（1晚）</p>
+        <p>西安</p>
+        <p class="hotel-name">返程</p>
+    </div>
+</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="group-divider"><span>韩国 · KOREA</span></div>
+
+        <section id="seoul-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">SEOUL</div>
+                <div class="card-header">
+                    <h2>首尔</h2>
+                    <p>9月29日～10月1日 · 3晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 9月29日傍晚抵达仁川机场后进市区；10月1日整天在首尔；10月2日转往庆州。三天以宫殿、韩屋村、汉江和南山夜景为主，步行加地铁就能走完。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-landmark"></i> 景福宫 · 昌德宫</h4>
+                        </div>
+                        <p>首尔最能代表朝鲜王朝的两座宫殿。景福宫规模最大，光化门、勤政殿和庆会楼气势十足，守门将换岗仪式值得一看；昌德宫更贴近自然，后苑的池塘、树林和亭台适合慢走。秋天银杏和红叶把宫墙衬得格外漂亮，穿韩服进景福宫还能免票。建议一早去景福宫，下午接昌德宫后苑，避开旅行团高峰。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-house-chimney"></i> 北村韩屋村</h4>
+                        </div>
+                        <p>成片保留的传统韩屋，屋顶、瓦墙和窄巷很有老首尔味道。这里不是博物馆，而是真实的居民区，最好的玩法是慢慢走、轻声看。从高处能望见瓦屋顶一直延伸到现代城市，传统和现代同框很特别。看点有北村八景、清晨光线、韩屋门廊和远处宫墙。建议早上九点前到，之后人会明显变多。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-water"></i> 汉江公园</h4>
+                        </div>
+                        <p>由沿江多个公园连成，是首尔人散步、骑行、野餐和看夜景的日常空间。白天沿步道慢走，傍晚坐在草地上看夕阳，夜里灯光亮起后再看桥景。汝矣岛、盘浦、纛岛各有不同气氛，盘浦的月光彩虹喷泉尤其有名。用一顿炸鸡啤酒或便利店小吃，就能体验最接地气的首尔生活，留两三个小时刚好。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-tower-observation"></i> N首尔塔 · 南山</h4>
+                        </div>
+                        <p>首尔最容易辨认的地标，塔在南山公园山顶，周围有步道、树林和观景平台。可以坐缆车，也可以从明洞步行上山，边走边看城市慢慢展开。傍晚最值得去，能一次看到夕阳、亮灯和夜景三个阶段。观景台能看到汉江、宫殿和远山，塔下的爱情锁墙也很有名。安排两三个小时就够。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-music"></i> 弘大</h4>
+                        </div>
+                        <p>首尔年轻文化最集中的区域，街头表演、独立音乐、舞蹈、咖啡店和小型展览都很多。它的魅力不在某个单一景点，而在广场、巷子和夜晚不断出现的新鲜事。想象广场附近常能看到唱歌、跳舞和即兴演出，周边小店随便逛也不会有压力。建议下午到，留到晚上感受现场气氛，但要注意地铁末班时间。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-utensils"></i> 广藏市场</h4>
+                        </div>
+                        <p>首尔很有代表性的传统市场，重点不在购物，而在一条条小吃摊和老字号。绿豆煎饼、紫菜包饭、生拌牛肉、拌饭和刀削面都很常见，围着摊子坐下就能看老板现场制作。通道不宽，声音、香味和人流混在一起，很有生活感。看点还有老式招牌、布料区和附近的清溪川；怕挤的话可以改去望远市场。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gyeongju-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">GYEONGJU</div>
+                <div class="card-header">
+                    <h2>庆州</h2>
+                    <p>10月2日～10月3日 · 2晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月2日从首尔南下庆州，10月3日一整天在庆州，10月4日转往釜山。庆州景点分散在市区和山上，建议一天走佛国寺、石窟庵，另一天逛市区的大陵苑和韩屋街。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-torii-gate"></i> 佛国寺</h4>
+                        </div>
+                        <p>新罗佛教艺术的代表，也是庆州最重要的世界文化遗产之一。寺院依山而建，从青云桥、白云桥进入后，会经过层层石阶和庭院，最后看到多宝塔与释迦塔相对而立。建筑不靠华丽取胜，而是用比例、石雕和空间让人慢慢安静下来。看点有古塔、石桥、莲花池和四季变化，春天樱花、秋天红叶尤其漂亮。建议早到避开团队客。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-monument"></i> 石窟庵</h4>
+                        </div>
+                        <p>位于吐含山，和佛国寺一起列入世界文化遗产。核心是一座人工开凿的花岗岩石窟，里面供奉本尊佛像，周围石壁上有天王、菩萨和弟子像，布局严谨。最特别的是清晨阳光会照进窟内，佛像显得安静庄重。这里不能近距离拍照，也不适合赶时间，需要坐巴士上山。建议和佛国寺安排在同一天，上午先到石窟庵。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-tree"></i> 大陵苑 · 天马冢</h4>
+                        </div>
+                        <p>庆州市中心的一片新罗王陵群，草地上分布着许多圆圆的坟丘，看起来像起伏的小山。天马冢可以进入内部，看到新罗金冠、金腰带和马具等陪葬品的展示，能直观了解古代新罗王室。这里离皇理团路很近，适合和历史街区一起走。春季和秋季最舒服，建议傍晚来，既避开日晒，也能看到陵丘和城市灯光交叠。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-store"></i> 韩屋街 · 皇理团路</h4>
+                        </div>
+                        <p>庆州的传统街区，指皇理团路和校村一带，韩屋被改成咖啡馆、餐厅、民宿和小店，节奏比首尔慢很多。石板路两边是矮墙、木门和瓦屋顶，走累了随时可以坐下喝杯茶。附近还有瞻星台、东宫与月池等历史景点，可以串成一条步行路线。建议下午到，傍晚走到瞻星台，再回皇理团路吃晚饭。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="busan-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">BUSAN</div>
+                <div class="card-header">
+                    <h2>釜山</h2>
+                    <p>10月4日～10月6日 · 3晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月4日从庆州到釜山，10月5日、6日在釜山，10月7日中午前赶往金海机场飞福冈。三天可以拆成海云台广安里一天、甘川和松岛一天、市区补漏一天。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-umbrella-beach"></i> 海云台海水浴场</h4>
+                        </div>
+                        <p>釜山最有名的海滩，沙滩后面就是高楼和酒店，散步时能看到城市贴着海的画面。这里不只适合夏天，秋天风凉人少，走起来更舒服。可以沿海南下到冬柏岛和APEC世峰楼，再走迎月路看山坡与秋叶。看点有清晨日出、海边列车、远处广安大桥和夜景。建议傍晚前后去，先走海边，再看日落和亮灯。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-water"></i> 广安里海水浴场</h4>
+                        </div>
+                        <p>最出名的是正对广安大桥的海滩视野。白天看桥、海和城市，晚上看桥灯倒映在海面上，气氛比海云台更年轻、更偏夜生活。海滩边有很多咖啡馆和餐厅，坐在窗边就能看桥，不购物也能舒服消磨时间。看点有日落、夜景、沙滩散步和偶尔遇到的无人机表演或小型活动。建议傍晚到，天黑后看桥景。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-palette"></i> 甘川文化村</h4>
+                        </div>
+                        <p>建在山坡上，彩色房子顺着地势层层排列，巷子窄而弯曲，转角常有壁画、雕塑和小型艺术空间。它原本是普通居民区，后来通过艺术改造出名，参观时要尊重住户生活。最受欢迎的打卡点有小王子雕像、观景平台和能俯瞰彩色屋顶的巷口。建议上午去，光线好、人也少；坡道和台阶多，要穿舒服的鞋。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-cable-car"></i> 松岛海上缆车 · 松岛海水浴场</h4>
+                        </div>
+                        <p>松岛海边可以一次体验海滩、步道和跨海缆车。海上缆车从岸边一路越过海面，水晶车厢脚下透明，能看到海水和远处岛屿；到对岸后还能接岩南公园和天空步道。海水浴场本身沙子细，旁边有松林和饭店，节奏比市区慢。看点有跨海缆车、海上步道、松岛日落和海鲜。建议下午去，先坐缆车再走海边步道，傍晚看灯。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="group-divider"><span>日本 · JAPAN</span></div>
+
+        <section id="saga-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">SAGA</div>
+                <div class="card-header">
+                    <h2>佐贺</h2>
+                    <p>10月7日～10月8日 · 2晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月7日下午从福冈机场入境后直接去佐贺，傍晚入住；10月8日一整天在佐贺，10月9日早上转往佐世保。第一天不排景点，专心完成移动和入住。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-landmark"></i> 佐贺城本丸历史馆 · 佐贺城公园</h4>
+                        </div>
+                        <p>佐贺市中心的城郭遗址，本丸御殿复原后可以免费参观，是幕末佐贺藩的政厅。馆内用模型、影像和实物还原当年的藩政与生活，看完对佐贺的历史脉络会有清楚概念。旁边是开阔的佐贺城公园，护城河、石墙和草坪很适合散步。安排两小时左右，适合到达当天或离开前的空档。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-person-hiking"></i> 吉野里历史公园</h4>
+                        </div>
+                        <p>日本最大的弥生时代聚落遗址，复原了围壕、瞭望楼和竖穴房屋，走进园区就像回到两千年前的村落。可以登上瞭望楼俯瞰整个聚落布局，也能在体验区尝试生火、纺织等古代生活。展馆里陈列着出土的铜剑、铜镜和陶器，说明这里当年与大陆有往来。园区很大，建议留三小时，从佐贺站坐JR过去再转巴士。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-torii-gate"></i> 祐德稻荷神社（备选）</h4>
+                        </div>
+                        <p>日本三大稻荷神社之一，建在山上，朱红千本鸟居和舞台式本殿非常上镜，春有杜鹃、秋有红叶，站在高处还能俯瞰有明海。从佐贺出发要先坐JR到肥前鹿岛，再换巴士，来回比较花时间。如果对神社和山中景色兴趣更大，可以把吉野里历史公园换成这里，行程会松一点。参道两边有不少小店，可以顺路吃午餐。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-utensils"></i> 佐贺牛（当地美食）</h4>
+                        </div>
+                        <p>佐贺的代表性和牛，油花细密、口感柔软，煎、烤、涮都很合适。市区不少店提供铁板烧或烧肉定食，价格比大城市亲民一些。最省事的做法是在佐贺站附近找一家评价好的烧肉店，点一份佐贺牛定食，再配当地清酒。吉野里或祐德稻荷回来之后正好赶上晚饭时间，吃完步行回酒店休息，不用另外安排交通。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sasebo-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">SASEBO</div>
+                <div class="card-header">
+                    <h2>佐世保</h2>
+                    <p>10月9日 · 1晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月9日上午从佐贺坐特急到佐世保，下午坐九十九岛游览船并上展望台，晚上在市区吃佐世保汉堡、逛四町商店街。10月10日转往长崎。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-ship"></i> 九十九岛游览船</h4>
+                        </div>
+                        <p>从佐世保港出发的观光船，在约一小时里穿行在散布着大小岛屿的海湾中，岛屿密度是日本少见的景致。船会穿过狭窄的水道，甲板上可以近距离看到岩壁、松树和养殖筏，天气好时海水颜色很有层次。船上通常有解说，岸上还有展海峰等展望台可以俯瞰同样的海景。建议提前查好班次，把游览船和展望台排在同一天。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-mountain-sun"></i> 船越展望所 · 弓张岳展望台</h4>
+                        </div>
+                        <p>佐世保看九十九岛最好的两个高处。船越展望所离市区较近，视野开阔，适合傍晚看夕阳把岛屿一座座点亮；弓张岳展望台海拔更高，能看到更多岛屿与海湾交错的全景。两处都在山上，公共交通班次有限，通常需要打车或坐观光巴士前往。建议和九十九岛游览船配合，一海一山，一天刚好。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-burger"></i> 佐世保汉堡 · 四町商店街</h4>
+                        </div>
+                        <p>佐世保汉堡是当地美军基地文化留下的产物，面包松软、现点现做，配料随店家不同而变化，是日本地方汉堡的代表之一。市区有多家老店，各家口味差异很大，可以按喜好挑一家坐下来慢慢吃。吃完顺路逛四町商店街和港口周边，感受这座军港城市的日常气息。晚上灯火不刺眼，走动轻松，适合作为一天的收尾。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-ticket"></i> 豪斯登堡（备选）</h4>
+                        </div>
+                        <p>佐世保的荷兰风主题乐园，运河、风车、花田和街道都按欧洲样式布置，季节花季和日本最大级的灯光秀最有看头。从佐贺或长崎坐特急约一个半小时可以到达，园内内容非常丰富，基本要占掉一整天。如果对主题乐园的兴趣大于九十九岛的海景，可以用它替换当天的行程。想兼顾两边时间会很紧，不建议硬排。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nagasaki-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">NAGASAKI</div>
+                <div class="card-header">
+                    <h2>长崎</h2>
+                    <p>10月10日～10月13日 · 4晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月10日下午到长崎，逛出岛和中华街；11日走和平公园、原爆资料馆和大浦天主堂、哥拉巴园；12日军舰岛游船加市区散步；13日去云仙、岛原一日游。10月14日转往熊本。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-dove"></i> 和平公园 · 原爆资料馆</h4>
+                        </div>
+                        <p>1945年8月9日原子弹在长崎爆炸，这片区域就是爆炸中心地。和平公园里有和平祈念像和各国赠送的纪念物，气氛安静肃穆；资料馆展出遇难者遗物、照片和证言，内容沉重但很值得看。参观完对战争与和平的感受会和单纯看风景完全不同。建议留两三个小时，慢慢看，不要赶。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-anchor"></i> 出岛</h4>
+                        </div>
+                        <p>江户锁国时代日本唯一的对西洋窗口，荷兰商馆旧址。复原的建筑和庭院规模不大，一小时能逛完，但有清晰的展板说明当年贸易、医学和科学是如何传入的，对理解长崎的特殊地位很有帮助。出岛旁边就是海边公园和商店街，可以顺路接上中华街。适合安排在抵达长崎的当天下午，节奏轻松。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-utensils"></i> 新地中华街</h4>
+                        </div>
+                        <p>日本最古老、也是三大中华街之一，强棒面和皿乌冬都发源在这里。街道不长，但店铺密集，肉包、角煮馒头和甜点适合边走边吃，晚上灯笼亮起后气氛更好。和横滨、神户的中华街相比，这里更小巧、也更贴近长崎港的历史背景。逛完可以步行到出岛或港口，作为傍晚的一段散步刚刚好。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-moon"></i> 稻佐山夜景</h4>
+                        </div>
+                        <p>世界新三大夜景之一，海拔333米的观景台能360度俯瞰长崎港和市区，山城特有的立体灯火是最大的看点。可以坐缆车或巴士上山，日落前到达，就能一次看到傍晚、亮灯和全黑三个阶段。山上风大、气温偏低，记得带件外套。如果天气不好，可以改到长崎港周边散步，第二天再补看夜景。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-church"></i> 大浦天主堂 · 哥拉巴园</h4>
+                        </div>
+                        <p>大浦天主堂是日本最古老的天主堂，也是国宝，白色外墙和彩色玻璃在坡道上很醒目。旁边的哥拉巴园保留了几座明治时期的洋人故居，园内可以俯瞰长崎港，也是歌剧《蝴蝶夫人》的背景地。两处走路只要五分钟，适合安排在同一段行程里。建议下午去，先在教堂看建筑，再进园子看港口和夕阳。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-ship"></i> 军舰岛（端岛）游船</h4>
+                        </div>
+                        <p>从长崎港出发的登岛游约三小时，可以看到日本最早的高层钢筋住宅和废弃煤矿的遗迹，2015年作为明治工业革命遗址列入世界遗产。船只靠岸后有专门的步道和讲解，能近距离看到崩塌的楼群与护岸。必须提前预约，风大时会停航。停航时可以改去长崎历史博物馆或重逛出岛，行程不会空。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-bridge-water"></i> 眼镜桥</h4>
+                        </div>
+                        <p>1634年建的石拱桥，桥身和水中倒影合成一副眼镜的形状，是长崎的地标之一。桥可以走上去，也可以下到河边步道拍照，附近还有心形石头等小发现。周围是安静的市区街道，逛街、喝咖啡都方便，安排半小时到一小时就够。适合和水边之森公园、新地中华街排在同一条散步路线上。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-hot-tub-person"></i> 云仙温泉 · 岛原（一日游）</h4>
+                        </div>
+                        <p>从长崎港坐渡轮去岛原，再换巴士上山到云仙温泉，一天可以走完。云仙地狱白烟直冒、硫黄味浓，配上山林和红叶很有气氛，温泉街上有足汤和共同浴场可以泡一泡。岛原一侧有岛原城和涌水庭园，回程的渡轮上还能看海。渡轮和巴士班次有限，出发前一定要查好返程时间，避免赶不上末班车。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kumamoto-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">KUMAMOTO</div>
+                <div class="card-header">
+                    <h2>熊本</h2>
+                    <p>10月14日～10月15日 · 2晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月14日上午从长崎经武雄温泉、新鸟栖转九州新干线到熊本，下午逛熊本城和城彩苑；15日在熊本市内走水前寺成趣园、现代美术馆和上下通。10月16日转往福冈。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-chess-rook"></i> 熊本城</h4>
+                        </div>
+                        <p>日本三大名城之一，也是熊本的象征。黑色外墙和优美的石垣很有辨识度，天守阁可以登顶俯瞰市区。2016年地震后经过长期修复，如今主要区域已重新开放，城内的展示也更新了，能了解筑城历史和震后重建过程。城堡占地很大，从入口走到天守要花点时间。建议安排在抵达熊本的当天下午，留两三个小时。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-store"></i> 樱之马场城彩苑</h4>
+                        </div>
+                        <p>紧挨熊本城的观光商圈，集中了熊本乡土料理、伴手礼店和小型演出场所。建筑按江户时代城下町的风格重建，逛完城堡顺路过来正好。这里能一次吃到太平燕、马肉料理和熊本拉面，也有现做的甜点和小吃。园区不大，一两个小时足够。作为城堡参观后的休息点很合适，不用专门安排半天。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-bag-shopping"></i> 上下通商店街</h4>
+                        </div>
+                        <p>熊本市中心的带屋顶商店街，和东京、大阪的同类商店街相比更安静、更有本地气息。药妆、服饰、书店、咖啡馆和餐厅都集中在一条直线上，下雨天也能舒服地走。周边的巷子里藏着不少居酒屋和小店，晚上比白天更热闹。逛完城堡或水前寺之后过来正合适，吃碗熊本拉面再回酒店。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-leaf"></i> 水前寺成趣园</h4>
+                        </div>
+                        <p>熊本代表性的回游式庭园，以涌泉水池为中心，配合假山、松树和石桥，据说借景模仿了东海道五十三次。清晨或傍晚人少，沿着池边慢慢走一圈大约四十分钟，可以顺便在园内茶室喝抹茶。园内还有出水神社，空间安静，和市区的喧嚣完全不同。建议上午去，之后接熊本市现代美术馆或上下通，一天很顺。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-palette"></i> 熊本市现代美术馆 · 熊本熊广场</h4>
+                        </div>
+                        <p>现代美术馆位于熊本城附近的现代建筑里，常设与特展以现代艺术为主，空间不大但质量不错，适合艺术爱好者。熊本熊广场则在市中心，是熊本熊的官方据点，每天有定时登场的舞台活动，气氛轻松，适合想看看吉祥物的人。两处可以按兴趣二选一，各自安排一到两小时。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-mountain"></i> 阿苏（备选）</h4>
+                        </div>
+                        <p>从熊本坐JR或巴士可以当天往返阿苏，看火山口、草千里和火山博物馆。阿苏山是活火山，火山口区域会因喷发警戒等级临时关闭，出发前一定要查最新状态。坐观光列车过去本身也是一段看点。车程较长，来回加上游览基本占掉一整天；如果想去，就把熊本市内的景点压缩到一天。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fukuoka-section" class="section-header">
+            <div class="day-card">
+                <div class="day-number-bg">FUKUOKA</div>
+                <div class="card-header">
+                    <h2>福冈</h2>
+                    <p>10月16日～10月18日 · 3晚</p>
+                </div>
+                <div class="card-body">
+                    <div class="highlight"><strong>安排：</strong> 10月16日上午从熊本坐新干线到博多，下午逛栉田神社、东长寺和博多运河城；17日、18日在福冈机动安排，购物、大濠公园和海边夜景都可以放在这两天。10月19日傍晚从福冈飞上海转西安。</div>
+                    <div class="attraction-details">
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-torii-gate"></i> 栉田神社</h4>
+                        </div>
+                        <p>博多总镇守，也是博多祇园山笠的起点，神社虽小但地位很高。境内有日本最大的山笠展示，一年四季都能看到华丽的装饰；正殿旁的银杏树和力士像也值得留意。神社就在博多站和运河城之间，逛街途中顺路就能到，停留半小时到一小时。作为理解博多历史和节庆文化的起点很合适。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-landmark"></i> 东长寺</h4>
+                        </div>
+                        <p>真言宗寺院，最出名的是寺内的木造大佛，以及有关空海与博多渊源的传说。寺院离博多站不远，境内安静，适合和栉田神社、运河城一起串成一条步行路线。本堂、五重塔和庭园规模都不大，半小时足够看完。想避开人流、在城市里找一段安静时间的话，这里很合适。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-city"></i> 博多运河城</h4>
+                        </div>
+                        <p>福冈市中心的大型复合设施，运河贯穿其中，定时举行的喷水表演和灯光秀是看点。商场、餐厅、剧场和影院都集中在这里，不买东西也可以看表演、吃饭、坐着休息。晚上灯光亮起后比白天更有气氛，适合和栉田神社、中洲一起安排。距离博多站和天神都不远，交通方便，是雨天和晚间的好去处。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-utensils"></i> 中洲屋台</h4>
+                        </div>
+                        <p>福冈代表性的路边小摊，沿那珂川排列，天黑后陆续开张。拉面、关东煮、烤串和天妇罗是常见项目，坐在狭长的台前和陌生人挨着吃，是这里最有趣的体验。价格不算便宜但气氛难得，适合当晚上的收尾。摊位偶尔会调整，去之前可以查一下当天的出摊情况，通常七点以后最热闹。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-tree"></i> 大濠公园 · 福冈城遗址</h4>
+                        </div>
+                        <p>大濠公园是围绕湖泊修建的城市公园，步道、草坪和喷泉很适合散步，附近有福冈城遗址和舞鹤公园。春天樱花、夏天荷花、秋天红叶各有看头，跑步和骑车的当地人很多。福冈城遗址保留着石垣和城门，站在高处可以俯瞰公园和市区。半天时间可以把两处走完，节奏轻松，适合安排在一个上午。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-bag-shopping"></i> 天神地下街</h4>
+                        </div>
+                        <p>福冈天神地区的地下购物街，和地铁、百货公司直接连通，下雨天也能逛得很舒服。店铺以服饰、杂货、咖啡和餐厅为主，选择多，价格从平价到中高档都有。地下街范围很大，容易走岔，跟着指示牌按区域走会轻松一些。适合安排在购物或休息的半天，和附近的福冈市美术馆、大濠公园可以连成一线。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-wand-magic-sparkles"></i> teamLab Forest</h4>
+                        </div>
+                        <p>位于福冈市的沉浸式数字艺术空间，用投影和互动装置把展厅变成会变化的森林，观众的身体动作会影响作品的样子。内容偏视觉和体验，不需要艺术背景也能玩得开心，拍照效果也好。参观通常要一个半小时到两小时，建议提前在网上买票并按场次入场。和天神地下街、大濠公园在同一区域，可以安排在同一个半天。</p>
+                        <div class="attraction-details-flex">
+                            <h4><i class="fas fa-umbrella-beach"></i> 百道海滨 · 福冈塔</h4>
+                        </div>
+                        <p>百道海滨公园沿博多湾展开，沙滩、草坪和海风很适合傍晚散步，正后方就是234米的福冈塔。塔上有观景台，可以俯瞰福冈市区、博多湾和志贺岛一带，日落和夜景都不错。海边和塔相距很近，可以先在沙滩看夕阳，再登塔看夜景。作为行程最后的收尾很合适，安排两小时左右。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
