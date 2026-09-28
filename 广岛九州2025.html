@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>广岛博多路书</title>
+    <!-- 引入 Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      :root {
+          --bg-color: #FDFCF7; /* 温暖的米黄信纸色 */
+          --card-bg: #FFFFFF;
+          --text-color: #3D3D3D;
+          --text-light: #9A9A9A;
+          --highlight-color: #0A9396; /* 清新蓝绿色 */
+          --border-color: #EAEAEA;
+      }
+
+      @font-face {
+          font-family: 'MiSans';
+          src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Bold.woff2') format('woff2');
+          font-weight: bold;
+      }
+
+      @font-face {
+          font-family: 'MiSans';
+          src: url('https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Regular.woff2') format('woff2');
+          font-weight: normal;
+      }
+      
+      html {
+          scroll-behavior: smooth;
+      }
+
+      body {
+          font-family: 'MiSans', "PingFang SC", "Microsoft YaHei", sans-serif;
+          margin: 0;
+          padding: 20px 15px;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          line-height: 1.8;
+      }
+
+      .main-container {
+          max-width: 800px;
+          margin: 0 auto;
+      }
+
+      .main-header {
+          text-align: center;
+          margin-bottom: 30px;
+      }
+
+      .main-header h1 {
+          font-size: 2.8rem;
+          font-weight: bold;
+          margin: 0;
+          line-height: 1.2;
+      }
+
+      .main-header p {
+          font-size: 1rem;
+          color: var(--text-light);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-top: 5px;
+      }
+      
+      /* -- Navigation Directory -- */
+      .directory-nav {
+          margin-bottom: 40px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+
+      .directory-nav-row {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 15px;
+         margin-bottom: 15px;
+      }
+
+      .nav-card {
+          background: #f0f0f0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          padding: 12px 25px;
+          border-radius: 25px;
+          text-decoration: none;
+          color: var(--text-color);
+          font-weight: bold;
+          transition: all 0.3s ease;
+          font-size: 0.95rem;
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+      }
+
+      .nav-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          color: var(--highlight-color);
+      }
+      
+      .day-card {
+          background-color: var(--card-bg);
+          border-radius: 16px;
+          padding: 25px;
+          margin-bottom: 25px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+          position: relative;
+          overflow: hidden;
+          border: 1px solid var(--border-color);
+      }
+
+      .day-number-bg {
+          position: absolute;
+          top: -20px;
+          right: 10px;
+          font-size: 9rem;
+          font-weight: bold;
+          color: rgba(0, 0, 0, 0.04);
+          z-index: 0;
+          user-select: none;
+      }
+
+      .card-header {
+          position: relative;
+          z-index: 1;
+          margin-bottom: 25px;
+      }
+
+      .card-header h2 {
+          font-size: 2rem;
+          font-weight: bold;
+          margin: 0;
+          color: var(--text-color);
+      }
+
+      .card-header p {
+          font-size: 0.9rem;
+          color: var(--text-light);
+          margin: 5px 0 0;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+      }
+      
+      .card-body ul {
+          list-style: none;
+          padding-left: 0;
+          position: relative;
+          z-index: 1;
+      }
+      
+      .card-body li {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 15px;
+          font-size: 0.95rem;
+      }
+      
+      .card-body li a {
+          color: var(--highlight-color);
+          font-weight: bold;
+          text-decoration: none;
+          border-bottom: 1px solid transparent;
+          transition: border-bottom 0.3s;
+      }
+
+      .card-body li a:hover {
+          border-bottom: 1px solid var(--highlight-color);
+      }
+
+      .card-body li i {
+          margin-right: 15px;
+          margin-top: 5px;
+          color: var(--highlight-color);
+          width: 20px;
+          text-align: center;
+      }
+      
+      .card-body li strong {
+          font-weight: bold;
+          color: #000;
+      }
+      
+      .attraction-details {
+          position: relative;
+          z-index: 1;
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid var(--border-color);
+      }
+      
+      .attraction-details h4 {
+          font-size: 1.1rem;
+          font-weight: bold;
+          color: var(--highlight-color);
+          margin-bottom: 5px;
+      }
+      
+      .attraction-details p {
+          margin: 0 0 15px 0;
+          font-size: 0.9rem;
+          color: #555;
+          padding-left: 10px;
+          border-left: 2px solid #EAEAEA;
+      }
+      
+      .attraction-details-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 5px;
+      }
+
+      .attraction-details-flex h4 {
+           margin: 0;
+      }
+
+      .highlight {
+          background-color: #fffbe6;
+          padding: 20px;
+          border-radius: 8px;
+          border-left: 5px solid #faad14;
+          margin: 20px 0;
+          position: relative;
+          z-index: 1;
+      }
+      .highlight strong {
+          color: #d46b08;
+      }
+      
+      table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 25px 0;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          position: relative;
+          z-index: 1;
+      }
+
+      th, td {
+          border: 1px solid #dee2e6;
+          padding: 12px;
+          text-align: left;
+      }
+
+      th {
+          background-color: #e9ecef;
+          font-weight: bold;
+      }
+      
+      .image-container {
+          display: flex;
+          justify-content: center;
+          margin-top: 20px;
+      }
+      .image-container img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      .section-header {
+          margin-top: 50px;
+          padding-top: 20px;
+          border-top: 2px dashed var(--border-color);
+      }
+
+      .shinkansen-list {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 15px;
+      }
+
+      .shinkansen-list li {
+          margin-bottom: 10px;
+          padding: 10px;
+          background-color: #f5f5f5;
+          border-radius: 8px;
+          border: 1px solid #eee;
+      }
+      
+      .hotel-list {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 30px;
+      }
+      
+      .hotel-list li {
+          margin-bottom: 25px;
+      }
+      
+      .hotel-info-group {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+      }
+      
+      .hotel-info-group p {
+           margin: 0;
+      }
+      
+      .hotel-date {
+          font-size: 1rem;
+          color: var(--text-color);
+          font-weight: bold;
+          display: flex;
+          align-items: flex-start;
+      }
+      
+      .hotel-date i {
+           margin-right: 10px;
+           color: var(--highlight-color);
+      }
+      
+      .hotel-name {
+           font-size: 0.95rem; 
+      }
+      
+      .hotel-name a {
+          color: #FFAA00; 
+          font-weight: bold;
+          text-decoration: none;
+      }
+      
+      .hotel-name a:hover {
+           text-decoration: underline;
+      }
+
+      .calendar {
+           display: grid;
+           grid-template-columns: repeat(7, 1fr);
+           gap: 5px;
+           margin-top: 20px;
+           font-size: 0.85rem;
+           text-align: center;
+      }
+
+      .calendar-header {
+           grid-column: 1 / -1;
+           font-weight: bold;
+           font-size: 1rem;
+           margin-bottom: 10px;
+      }
+
+      .day-name {
+           font-weight: bold;
+           color: var(--text-light);
+      }
+      
+      .day-cell {
+           padding: 8px;
+           border-radius: 8px;
+           background-color: #f0f0f0;
+           color: var(--text-color);
+           position: relative;
+           overflow: hidden;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+      }
+      
+      .day-cell span {
+          position: relative;
+          z-index: 2;
+          font-weight: bold;
+      }
+
+      .day-cell::after {
+          content: attr(data-city);
+          position: absolute;
+          bottom: 5px;
+          right: 8px;
+          font-size: 1.0rem;
+          font-weight: 800;
+          color: rgba(0, 0, 0, 0.06);
+          z-index: 1;
+          user-select: none;
+          white-space: nowrap;
+      }
+      
+      .day-highlight-hiroshima { background-color: rgba(10, 147, 150, 0.2); }
+      .day-highlight-onomichi { background-color: rgba(255, 170, 0, 0.2); }
+      .day-highlight-fukuyama { background-color: rgba(255, 100, 100, 0.2); }
+      .day-highlight-shimonoseki { background-color: rgba(100, 150, 255, 0.2); }
+      .day-highlight-beppu { background-color: rgba(255, 180, 50, 0.2); }
+      .day-highlight-fukuoka { background-color: rgba(50, 200, 100, 0.2); }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+      <header class="main-header">
+          <h1>日本广岛-九州区域路书</h1>
+          <p>HIROSHIMA & KYUSHU AREA ROADBOOK</p>
+      </header>
+
+      <nav class="directory-nav">
+          <div class="directory-nav-row">
+              <a href="#transport-section" class="nav-card">交通</a>
+              <a href="#accommodation-section" class="nav-card">住宿</a>
+          </div>
+          <div class="directory-nav-row">
+              <a href="#hiroshima-section" class="nav-card">广岛</a>
+              <a href="#onomichi-section" class="nav-card">尾道</a>
+              <a href="#fukuyama-section" class="nav-card">福山</a>
+              <a href="#shimonoseki-section" class="nav-card">下关</a>
+              <a href="#oita-section" class="nav-card">大分</a>
+              <a href="#fukuoka-section" class="nav-card">福冈</a>
+          </div>
+      </nav>
+
+      <section id="transport-section">
+          <div class="day-card">
+              <div class="day-number-bg">TICKET</div>
+                <div class="card-header">
+                    <h2>核心交通方案</h2>
+                    <p>TRANSPORTATION PLAN</p>
+                </div>
+                <div class="card-body">
+                    <h3>最终结论：全程单独购票</h3>
+                    <div class="highlight">
+                        <strong>最佳选择：</strong> 经过对新行程的精确成本核算，结论非常明确——不购买任何JR周游券，全程单独购票是此行最经济的选择。虽然便利性略有下降，但可以节省大量费用。
+                    </div>
+                    
+                    <h3>需要购买新干线车票的车站</h3>
+                    <ul class="shinkansen-list">
+                        <li>福岡 (Hakata) → 広島 (Hiroshima)</li>
+                        <li>福山 (Fukuyama) → 下関 (Shimonoseki)</li>
+                        <li>下関 (Shimonoseki) → 博多 (Hakata)</li>
+                        <li>博多 (Hakata) → 由布院 (Yufuin)</li>
+                        <li>由布院 (Yufuin) → 博多 (Hakata)</li>
+                    </ul>
+
+                    <h3>主要JR区间票价一览</h3>
+                     <table>
+                        <thead>
+                            <tr><th>日期</th><th>区间</th><th>票价 (约)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Day 1</td><td>福冈 → 广岛 (新干线)</td><td>8,900 日元</td></tr>
+                            <tr><td>Day 3</td><td>广岛 ↔ 岩国 ↔ 宫岛口</td><td>2,160 日元</td></tr>
+                            <tr><td>Day 4</td><td>广岛 ↔ 吴</td><td>1,040 日元</td></tr>
+                            <tr><td>Day 5</td><td>广岛 → 尾道</td><td>1,350 日元</td></tr>
+                            <tr><td>Day 6</td><td>尾道 ↔ 竹原</td><td>1,360 日元</td></tr>
+                            <tr><td>Day 9</td><td>尾道 → 福山</td><td>420 日元</td></tr>
+                            <tr><td>Day 11</td><td>福山 → 下关 (新干线)</td><td>约5,000 日元</td></tr>
+                            <tr><td>Day 11</td><td>下关 → 由布院 (新干线+特急)</td><td>约6,000 日元</td></tr>
+                            <tr><td>Day 13</td><td>由布院 ↔ 别府</td><td>约1,600 日元</td></tr>
+                            <tr><td>Day 15</td><td>由布院 → 福冈 (特急)</td><td>约4,500 日元</td></tr>
+                        </tbody>
+                    </table>
+
+                </div>
+          </div>
+      </section>
+
+      <section id="accommodation-section">
+          <div class="day-card">
+                <div class="day-number-bg">HOTEL</div>
+                 <div class="card-header">
+                    <h2>住宿日历</h2>
+                    <p>ACCOMMODATION PLAN</p>
+                </div>
+                <div class="card-body">
+                    <h3 style="text-align: center;">2025年9月/10月</h3>
+                     <div class="calendar">
+                         <div class="day-name">Mon</div>
+                         <div class="day-name">Tue</div>
+                         <div class="day-name">Wed</div>
+                         <div class="day-name">Thu</div>
+                         <div class="day-name">Fri</div>
+                         <div class="day-name">Sat</div>
+                         <div class="day-name">Sun</div>
+                         <!-- September -->
+                         <div></div>
+                         <div></div>
+                         <div></div>
+                         <div></div>
+                         <div></div>
+                         <div class="day-cell day-highlight-hiroshima" data-city="广岛"><span>27</span></div>
+                         <div class="day-cell day-highlight-hiroshima" data-city="广岛"><span>28</span></div>
+                         <div class="day-cell day-highlight-hiroshima" data-city="广岛"><span>29</span></div>
+                         <div class="day-cell day-highlight-hiroshima" data-city="广岛"><span>30</span></div>
+                         <!-- October -->
+                         <div class="day-cell day-highlight-onomichi" data-city="尾道"><span>1</span></div>
+                         <div class="day-cell day-highlight-onomichi" data-city="尾道"><span>2</span></div>
+                         <div class="day-cell day-highlight-fukuyama" data-city="福山"><span>3</span></div>
+                         <div class="day-cell day-highlight-fukuyama" data-city="福山"><span>4</span></div>
+                         <div class="day-cell day-highlight-fukuyama" data-city="福山"><span>5</span></div>
+                         <div class="day-cell day-highlight-fukuyama" data-city="福山"><span>6</span></div>
+                         <div class="day-cell day-highlight-shimonoseki" data-city="下关"><span>7</span></div>
+                         <div class="day-cell day-highlight-shimonoseki" data-city="下关"><span>8</span></div>
+                         <div class="day-cell day-highlight-beppu" data-city="别府"><span>9</span></div>
+                         <div class="day-cell day-highlight-beppu" data-city="别府"><span>10</span></div>
+                         <div class="day-cell day-highlight-fukuoka" data-city="福冈"><span>11</span></div>
+                         <div class="day-cell day-highlight-fukuoka" data-city="福冈"><span>12</span></div>
+                         <div class="day-cell day-highlight-fukuoka" data-city="福冈"><span>13</span></div>
+                         <div class="day-cell day-highlight-fukuoka" data-city="福冈"><span>14</span></div>
+                     </div>
+
+                     <ul class="hotel-list">
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D01-D04（9月27日-9月30日）</p>
+                                 <p>广岛，4晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/Toyoko+Inn+Hiroshima+Station+Shinkansenguchi+2/@34.3990523,132.4767715,17z/data=!4m11!3m10!1s0x355a9f8ffdcd98a3:0x1afbe0ba0c299d47!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d34.3990523!4d132.4793464!16s%2Fg%2F11hhrznt3_?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">东横INN 广岛站新干线口2号店</a></p>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D05-D06（10月01日-10月02日）</p>
+                                 <p>尾道，2晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/%E5%B0%BE%E9%81%93%E7%AC%AC%E4%B8%80%E9%85%92%E5%BA%97/@34.4028623,133.186216,17z/data=!4m11!3m10!1s0x3551003704a09a45:0x22b7b12c6e4a3736!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d34.4028624!4d133.1910869!16s%2Fg%2F1tdd_4q1?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">尾道第一酒店</a></p>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D07-D10（10月03日-10月06日）</p>
+                                 <p>福山，4晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/%E5%B0%BE%E9%81%93%E7%AC%AC%E4%B8%80%E9%85%92%E5%BA%97/@34.4028623,133.186216,17z/data=!4m11!3m10!1s0x3551003704a09a45:0x22b7b12c6e4a3736!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d34.4028624!4d133.1910869!16s%2Fg%2F1tdd_4q1?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">东横INN 福山站新干线南口</a></p>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D11-D12（10月07日-10月08日）</p>
+                                 <p>下关，2晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/Toyoko+INN+Shimonoseki+Kaikyo+Yume+Tower+mae/@33.9515519,130.9259989,17z/data=!3m1!4b1!4m11!3m10!1s0x3543bdb9fcfbd433:0x5c3fc42d0b0a9434!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d33.9515519!4d130.9285738!16s%2Fg%2F1tt1qh26?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">东横INN 下关海峡梦之塔前</a></p>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D13-D14（10月09日-10月10日）</p>
+                                 <p>别府，2晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/Onyado+Nono+Beppu/@33.2983836,131.4648475,14z/data=!4m15!1m2!2m1!1z5pel5pysIOWIq-W6nOWFq-axpOa4qeWuv-aaluS5g-WIq-W6nA!3m11!1s0x3546a78a8e210105:0x46fa6d81d5edbe2c!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d33.279554!4d131.5015911!15sCiXml6XmnKwg5Yir5bqc5YWr5rGk5rip5a6_5pqW5LmD5Yir5bqcWjAiLuaXpeacrCDliKsg5bqcIOWFqyDmsaQg5ripIOWuvyDmmpYg5LmDIOWIqyDlupySAQVob3RlbJoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VSV09UWlVUVVJCRUFFqgGDARABKioiJuaXpeacrCDliKsg5bqcIOWFqyDmsaQg5ripIOWuvyDmmpYg5LmDKBAyHxABIhuEOyD6iPZfnkacVCf0JBi2wv6QTfEZl5iR_FYyMhACIi7ml6XmnKwg5YirIOW6nCDlhasg5rGkIOa4qSDlrr8g5pqWIOS5gyDliKsg5bqc4AEA-gEECAAQIw!16s%2Fg%2F11svts_0nf?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">别府八汤温宿暖乃别府</a></p>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="hotel-info-group">
+                                 <p class="hotel-date"><i class="fas fa-hotel"></i>D15-D18（10月11日-10月14日）</p>
+                                 <p>福冈，3晚</p>
+                                 <p class="hotel-name"><a href="https://www.google.com/maps/place/WING%E5%9C%8B%E9%9A%9B%E7%B2%BE%E9%81%B8%E9%85%92%E5%BA%97+%E5%8D%9A%E5%A4%9A%E7%AB%99%E5%89%8D/@33.5886556,130.4137414,17z/data=!3m1!4b1!4m11!3m10!1s0x354191b92a272fe3:0x7891b863b449a73e!5m4!1s2025-10-09!2i2!4m1!1i2!8m2!3d33.5886556!4d130.4163217!16s%2Fg%2F11clvsk997?hl=zh-cn&entry=ttu&g_ep=EgoyMDI1MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Wing国际饭店-Select博多站前</a></p>
+                             </div>
+                         </li>
+                    </ul>
+                </div>
+          </div>
+      </section>
+
+      <div id="hiroshima-section">
+          <!-- Day 1 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">01</div>
+              <div class="card-header">
+                  <h2>抵达广岛</h2>
+                  <p>DAY 1: ARRIVAL IN HIROSHIMA</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-plane-arrival"></i><div><strong>航班:</strong> 乘坐GJ6059航班（10:00-13:55），从西安直飞福冈。</div></li>
+                      <li><i class="fa-solid fa-train-subway"></i><div><strong>交通:</strong> 福冈机场搭乘地铁至博多站(Hakata Station)，在车站售票机或窗口购买新干线车票，乘坐JR山阳新干线(Sanyo Shinkansen)前往广岛站(Hiroshima Station) (约70分钟)。</div></li>
+                      <li><i class="fa-solid fa-person-walking"></i><div><strong>活动:</strong> 抵达广岛，入住酒店，晚上前往“广岛烧村”(お好み村)品尝地道美食。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-utensils"></i> 广岛烧村 (Okonomimura)</h4>
+                      <p>广岛烧村位于广岛市中心，是一座专门汇集了多家广岛烧餐厅的大楼。广岛烧的特色是使用大量的卷心菜、豆芽和面条，层层叠叠地制作而成，口感丰富，与大阪烧截然不同。在这里，你可以坐在热气腾腾的铁板前，一边观看厨师们娴熟的烹饪技艺，一边享用新鲜出炉的美味广岛烧，是体验广岛独特美食文化的绝佳去处。</p>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Day 2 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">02</div>
+              <div class="card-header">
+                  <h2>历史的反思</h2>
+                  <p>DAY 2: HIROSHIMA CITY</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                          <li><i class="fa-solid fa-landmark"></i><div><strong>活动:</strong> 参观<strong>和平纪念公园</strong>、<strong>原子弹爆炸圆顶屋</strong>、<strong>广岛和平纪念资料馆</strong>、<strong>广岛城</strong>和<strong>缩景园</strong>。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                         <div class="attraction-details-flex">
+                               <h4><i class="fa-solid fa-monument"></i> 和平纪念公园 (Peace Memorial Park)</h4>
+                         </div>
+                      <p>位于原子弹爆炸中心地附近，为纪念1945年的悲剧并祈愿世界永久和平而建。公园内绿意盎然，静谧肃穆，集中了原子弹爆炸圆顶屋、和平纪念资料馆、遇难者慰灵碑等重要设施。漫步其中，可以感受到对生命的尊重和对和平的深切渴望是广岛历史与精神的核心地标。</p>
+                         <div class="attraction-details-flex">
+                               <h4><i class="fa-solid fa-landmark"></i> 原子弹爆炸圆顶屋 (Atomic Bomb Dome)</h4>
+                         </div>
+                      <p>作为世界文化遗产，这座在原子弹爆炸中幸存下来的建筑残骸，是那场灾难最具象、最震撼人心的见证。它静静地矗立在元安川畔，无声地诉说着战争的残酷，并作为警示后人、祈愿和平的永恒象征，给每一位参观者带来深刻的心灵冲击。</p>
+                         <div class="attraction-details-flex">
+                               <h4><i class="fa-solid fa-book-open"></i> 广岛和平纪念资料馆 (Hiroshima Peace Memorial Museum)</h4>
+                         </div>
+                      <p>系统性地展示了原子弹爆炸前后的广岛历史、核武器的恐怖以及遇难者的遗物与故事。馆内陈列的物品，如烧焦的衣物、变形的器皿和幸存者的证言，都以极强的视觉冲击力还原了当时的惨状。参观这里是一次沉重但必要的教育体验，旨在让人们深刻理解核武器的非人道性。</p>
+                         <div class="attraction-details-flex">
+                               <h4><i class="fa-solid fa-torii-gate"></i> 广岛城 (Hiroshima Castle)</h4>
+                         </div>
+                      <p>原建于1589年，但在原子弹爆炸中被完全摧毁。现在的天守阁是于1958年参照原样重建的，其外观典雅，被称为“鲤城”。城内设有历史博物馆，展示了广岛地区的武家文化与历史变迁。登上天守阁，可以俯瞰广岛市景，感受作为一座城下町的悠久历史。</p>
+                         <div class="attraction-details-flex">
+                               <h4><i class="fa-solid fa-leaf"></i> 缩景园 (Shukkei-en Garden)</h4>
+                         </div>
+                      <p>一座拥有约400年历史的日式回游式庭园，其名意为“浓缩的风景”。庭园巧妙地模仿并微缩了中国的著名风景，通过池塘、桥梁和茶室的精心布局，营造出一步一景的优美画卷。园内四季景色各异，是远离城市喧嚣、感受日本传统园林美学与自然和谐之美的绝佳去处。</p>
+                  </div>
+              </div>
+          </section>
+          
+          <!-- Day 3 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">03</div>
+              <div class="card-header">
+                  <h2>岩国 & 宫岛</h2>
+                  <p>DAY 3: IWAKUNI & MIYAJIMA</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-bridge-water"></i><div><strong>上午 (岩国):</strong> 从广岛站乘坐JR山阳本线至岩国站(Iwakuni Station) (约50分钟)。游览日本三大名桥之一的<strong>锦带桥(Kintai Bridge)</strong>，可一并参观山顶的<strong>岩国城</strong>。</div></li>
+                      <li><i class="fa-solid fa-water"></i><div><strong>下午 (宫岛):</strong> 从岩国站乘坐JR山阳本线至宫岛口站(Miyajimaguchi Station) (约20分钟)，换乘JR渡轮或松大汽船前往宫岛。</div></li>
+                      <li><i class="fa-solid fa-ferry"></i><div><strong>轮渡信息:</strong> <a href="https://www.jr-miyajimaferry.co.jp/timetable/" target="_blank">点击查询JR西日本宫岛渡轮时刻表</a></div></li>
+                      <li><i class="fa-solid fa-wave-square"></i><div><strong>宫岛潮汐表 (出行前请务必查询当日准确时间):</strong></div></li>
+                  </ul>
+                   <table>
+                      <thead><tr><th>日期示例</th><th>满潮 (High Tide)</th><th>干潮 (Low Tide)</th></tr></thead>
+                      <tbody><tr><td>2025/MM/DD</td><td>约 10:30 AM</td><td>约 4:30 PM</td></tr></tbody>
+                  </table>
+                   <div class="attraction-details">
+                      <h4><i class="fa-solid fa-archway"></i> 锦带桥 (Kintai Bridge)</h4>
+                      <p>横跨于锦川之上，是日本三大名桥之一，以其独特的五连拱木造结构而闻名于世。整座桥梁未用一钉一铆，展现了古代工匠的精湛技艺。桥身弧线优美，宛如一条漂浮在水面的锦带，与周围的山水景色融为一体，四季皆有不同的风韵，吸引着无数游客前来观赏。</p>
+                      <h4><i class="fa-brands fa-fort-awesome"></i> 岩国城 (Iwakuni Castle)</h4>
+                      <p>坐落于城山山顶，与山下的锦带桥遥相呼应。从锦带桥畔乘坐缆车即可轻松抵达。其最大的魅力在于从天守阁顶层眺望的360度全景，可以将锦带桥、锦川以及濑户内海的岛屿风光尽收眼底，景色极为壮观。</p>
+                      <h4><i class="fa-solid fa-torii-gate"></i> 严岛神社 (Itsukushima Shrine)</h4>
+                      <p>拥有1400多年历史的世界文化遗产，是日本最著名的神社之一。其最独特的景观便是建立在潮间带之上的朱红色社殿群和海上大鸟居。当潮水上涨时，整个神社仿佛漂浮于海面之上，景象神秘而壮观；潮水退去后，游客则可以步行至大鸟居下方，近距离感受其雄伟。</p>
+                          <h4><i class="fa-solid fa-mountain-sun"></i> 弥山 (Mount Misen)</h4>
+                      <p>位于宫岛中心，是自古以来备受尊崇的神山。乘坐缆车可抵达半山腰，再徒步登山，沿途可以欣赏到原始森林的自然风光。山顶的展望台视野绝佳，可以将濑户内海的群岛美景一览无余。山中还保留着多个能量景点，是一次结合了自然探索与历史文化体验的徒步之旅。</p>
+                  </div>
+              </div>
+          </section>
+          
+          <!-- Day 4 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">04</div>
+              <div class="card-header">
+                  <h2>海军港口吴市</h2>
+                  <p>DAY 4: KURE CITY</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                          <li><i class="fa-solid fa-ship"></i><div><strong>交通:</strong> 从广岛站乘坐JR吴线(Kure Line)快速列车至吴站(Kure Station) (约35分钟)。</div></li>
+                          <li><i class="fa-solid fa-anchor"></i><div><strong>活动:</strong> 参观<strong>大和博物馆</strong>和可进入真实潜艇内部的<strong>海上自卫队吴史料馆</strong>。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-ship"></i> 大和博物馆 (Yamato Museum)</h4>
+                      <p>正式名称为吴市海事历史科学馆，是吴市的标志性景点。馆内最引人注目的是按1:10比例精确复原的二战时期“大和”号战舰模型其巨大的体量和精密的细节令人震撼。博物馆通过丰富的展品，详细介绍了吴市作为日本重要海军港口和造船基地的历史，以及相关的科学技术。</p>
+                      <h4><i class="fa-solid fa-water"></i> 海上自卫队吴史料馆 (JMSDF Kure Museum)</h4>
+                      <p>因其展出的巨大退役潜艇“秋潮”号而被亲切地称为“铁鲸馆”。这是日本唯一一个可以进入真实潜艇内部参观的博物馆。游客不仅能亲身体验潜艇内部狭窄的空间和复杂的设备，还能通过展览了解日本海上自卫队的扫雷活动和潜艇部队的历史，是一种非常独特的沉浸式体验。</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+      <div id="onomichi-section">
+          <!-- Day 5 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">05</div>
+              <div class="card-header">
+                  <h2>前往尾道</h2>
+                  <p>DAY 5: HEADING TO ONOMICHI</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-suitcase-rolling"></i><div><strong>行李方案:</strong> 将大件行李通过“宅急便”服务从广岛酒店寄往福山的酒店，轻装上路。</div></li>
+                      <li><i class="fa-solid fa-train"></i><div><strong>交通:</strong> 从广岛站乘坐JR山阳本线至尾道站(Onomichi Station) (约80分钟)。</div></li>
+                  </ul>
+              </div>
+          </section>
+          
+          <!-- Day 6 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">06</div>
+              <div class="card-header">
+                  <h2>竹原怀旧之旅</h2>
+                  <p>DAY 6: TAKEHARA, THE LITTLE KYOTO</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-train"></i><div><strong>交通:</strong> 从尾道站乘坐JR山阳本线到三原站(Mihara Station) (约15分钟)，换乘JR吴线到竹原站(Takehara Station) (约25分钟)。</div></li>
+                      <li><i class="fa-solid fa-house-chimney-window"></i><div><strong>活动:</strong> 游览被称为“安芸的小京都”的<strong>竹原町并保存地区</strong>，感受江户时代的古街风貌。</div></li>
+                  </ul>
+                   <div class="attraction-details">
+                      <h4><i class="fa-solid fa-store"></i> 竹原町并保存地区 (Takehara Townscape Preservation District)</h4>
+                      <p>被誉为“安芸的小京都”，这里完好地保存了江户时代后期作为制盐和酿酒业中心而繁荣一时的古街风貌。漫步在铺着石板路的老街上，两侧是古朴的格子窗町屋和宏伟的宅邸，仿佛穿越回了过去。这里宁静而怀旧的氛围，使其成为许多影视作品的取景地。</p>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Day 7 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">07</div>
+              <div class="card-header">
+                  <h2>岛波海道骑行</h2>
+                  <p>DAY 7: SHIMANAMI KAIDO CYCLING</p>
+              </div>
+              <div class="card-body">
+                   <ul data-itinerary>
+                      <li><i class="fa-solid fa-bicycle"></i><div><strong>活动:</strong> 从尾道租自行车，乘渡轮至向岛，体验<strong>岛波海道</strong>精华段骑行（向岛 → 生口岛）。</div></li>
+                      <li><i class="fa-solid fa-ferry"></i><div><strong>轮渡信息 (尾道 ↔ 向岛):</strong> <a href="https://www.city.onomichi.hiroshima.jp/uploaded/life/80828_221212_misc.pdf" target="_blank">点击查询时刻表</a></div></li>
+                      <li><i class="fa-solid fa-ferry"></i><div><strong>轮渡信息 (因岛 ↔ 尾道):</strong> <a href="https://www.city.onomichi.hiroshima.jp/uploaded/life/80828_221212_misc.pdf" target="_blank">点击查询时刻表</a></div></li>
+                      <li><i class="fa-solid fa-ferry"></i><div><strong>轮渡信息 (生口岛 → 尾道):</strong> <a href="https://s-cruise.jp/wp-content/uploads/2022/02/%E6%B8%9B%E4%BE%BF%E9%81%8B%E8%88%AA%E6%99%82%E5%88%BB%E8%A1%A802210306_%E6%8E%B2%E7%A4%BA%E7%94%A8.pdf" target="_blank">点击查询时刻表</a></div></li>
+                      <li><i class="fa-solid fa-cookie-bite"></i><div><strong>特色美食:</strong> 生口岛的“柠檬谷”甜品。</div></li>
+                  </ul>
+                   <div class="attraction-details">
+                      <h4><i class="fa-solid fa-road-bridge"></i> 岛波海道 (Shimanami Kaido)</h4>
+                      <p>连接本州尾道市和四国今治市的壮丽跨海公路，全长约70公里，由数座风格各异的跨海大桥串联起濑户内海上的六个岛屿。它不仅是一条交通要道，更是被誉为“骑行者圣地”的世界级自行车道。沿途风光旖旎，可以尽情享受阳光、海风和岛屿风情，感受在海天之间自由穿梭的独特魅力。</p>
+                   </div>
+                   <div class="image-container">
+                       <img src="https://shimanami-cycle.or.jp/rental/wp-content/themes/shimanami2018/img/contents/course.gif" alt="骑行路线图">
+                   </div>
+              </div>
+          </section>
+
+          <!-- Day 8 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">08</div>
+              <div class="card-header">
+                  <h2>尾道与东京物语</h2>
+                  <p>DAY 8: ONOMICHI DEEP DIVE</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-cable-car"></i><div><strong>活动:</strong> 乘坐<strong>千光寺山缆车</strong>上山，从<strong>千光寺公园</strong>欣赏绝景，然后沿着<strong>古寺巡礼路线</strong>和<strong>猫之细道</strong>慢慢下山。</div></li>
+                      <li><i class="fa-solid fa-utensils"></i><div><strong>特色美食:</strong> 尾道拉面。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-mountain-city"></i> 千光寺公园 (Senko-ji Park)</h4>
+                      <p>位于尾道市中心的大宝山山顶，是俯瞰尾道水道和濑户内海群岛全景的最佳地点。公园内遍植樱花，是著名的赏樱名所。游客可以乘坐缆车轻松登山，山顶设有展望台，视野开阔。无论是白天欣赏波光粼粼的海面，还是傍晚观赏夕阳与夜景，这里都是感受尾道之美的必访之地。</p>
+                      <h4><i class="fa-solid fa-person-walking"></i> 古寺巡礼路线 (Temple Walk)</h4>
+                      <p>一条连接尾道山坡上25座古老寺庙的徒步小径。这条路线蜿蜒穿梭于狭窄的石阶、宁静的墓地和当地居民的住宅之间，充满了探索的乐趣。行走其间，不仅能欣赏到古朴的建筑，还能从不同角度俯瞰山下的城镇与海港风光是体验尾道独特山城魅力的经典方式。</p>
+                      <h4><i class="fa-solid fa-cat"></i> 猫之细道 (Cat Alley)</h4>
+                      <p>连接艮神社与天宁寺三重塔的一条约200米长的窄巷。这条小径因艺术家在此放置了许多以猫为主题的“福石猫”而得名，同时也吸引了许多真实的猫咪在此栖息。小巷两旁有以猫为主题的咖啡馆、杂货店和小型美术馆，充满了童趣和艺术气息，是爱猫人士的必游之地。</p>
+                  </div>
+                  <div class="attraction-details">
+                    <div class="highlight">
+                        <strong>光影巡礼：《东京物語》取景地探访</strong><br>
+                        尾道是电影大师小津安二郎不朽名作《东京物语》的主要取景地，这座小城宁静的港口、蜿蜒的山路和古老的寺庙，共同构成了电影中父母所生活的故乡背景。漫步于此，仿佛能走入电影的经典场景之中，感受那份跨越时代的温情与惆怅。
+                    </div>
+                    <h4><i class="fa-solid fa-film"></i> 住吉神社的石灯笼</h4>
+                    <p>作为电影的开场镜头，这座石灯笼框起了宁静的尾道水道，伴随着蒸汽船的汽笛声，奠定了故事的基调。</p>
+                    <h4><i class="fa-solid fa-film"></i> 净土寺</h4>
+                    <p>电影最经典场景的拍摄地。母亲去世后，儿媳纪子（原节子饰）与父亲周吉（笠智众饰）在此交谈，周吉发出了“啊，多么美丽的黎明”的感叹。两人身旁的石灯笼也出现在电影海报上。</p>
+                    <h4><i class="fa-solid fa-film"></i> 竹村家旅馆</h4>
+                    <p>虽然电影中家庭聚餐的场景为棚内拍摄，但从旅馆二楼眺望尾道水道的镜头取景于此。导演小津安二郎和主要演员在拍摄期间曾下榻于此。</p>
+                    <h4><i class="fa-solid fa-film"></i> 中央栈桥</h4>
+                    <p>在电影中作为风景镜头出现，以其独特的拱形屋顶展现了尾道作为港口城市的特色氛围。</p>
+                    <h4><i class="fa-solid fa-film"></i> 福善寺</h4>
+                    <p>电影中母亲葬礼场景前后的镜头，如寺庙本堂和部分墓地（栏杆），是在此地拍摄的。</p>
+                    <h4><i class="fa-solid fa-film"></i> 旧尾道市立筒汤小学校</h4>
+                    <p>电影中，小女儿京子在怀旧的木结构教室窗边，目送嫂子纪子乘坐的火车离开的场景，在此拍摄。该校现已关闭。</p>
+                    <h4><i class="fa-solid fa-film"></i> 港町附近仓库/栗吉材木店周边</h4>
+                    <p>影片开场，孩子们穿过小巷，在面向主干道的仓库前走路上学的画面取景于此。</p>
+                    <h4><i class="fa-solid fa-film"></i> 山阳本线的线路</h4>
+                    <p>紧贴着山坡和民宅穿行的铁轨，在电影中作为小津导演标志性的“帘子镜头”，用于衔接场景，表现尾道的生活气息。</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+      <div id="fukuyama-section" class="section-header">
+          <!-- Day 9 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">09</div>
+              <div class="card-header">
+                  <h2>探访鞆之浦</h2>
+                  <p>DAY 9: FUKUYAMA & TOMONOURA</p>
+              </div>
+              <div class="card-body">
+                   <ul data-itinerary>
+                      <li><i class="fa-solid fa-train"></i><div><strong>交通:</strong> 从尾道站乘坐JR山阳本线至福山站 (约20分钟)。</div></li>
+                      <li><i class="fa-solid fa-bus"></i><div><strong>活动:</strong> 下午乘坐巴士前往宫崎骏电影《悬崖上的金鱼姬》的取景地——<strong>鞆之浦 (Tomonoura)</strong>。</div></li>
+                  </ul>
+                   <div class="attraction-details">
+                      <h4><i class="fa-solid fa-water"></i> 鞆之浦 (Tomonoura)</h4>
+                      <p>一个拥有千年历史的古老港口小镇，至今仍保留着江户时代的港湾设施和街道风貌，如常夜灯、石砌码头等。这里宁静而复古的氛围，使其成为电影《悬崖上的金鱼姬》的灵感来源地。游客可以漫步于古街，探访历史悠久的寺社和老店铺，是濑户内海地区历史风貌保存最完好的港町之一。</p>
+                       <div class="highlight">
+                           <strong>电影与小镇：</strong> 宫崎骏导演在创作《悬崖上的金鱼姬》时，曾多次到访鞆之浦，并在此居住了两个月。这个小镇的海岸线、海边的小屋、渔船以及古朴的街道，都为电影提供了丰富的灵感和原型。片中波妞和宗介生活的海边小镇，以及那个宁静又充满奇幻色彩的海港，正是对鞆之浦的艺术再现。漫步于此，你或许能找到电影中熟悉的场景，感受这份跨越次元的奇妙联结。
+                       </div>
+                  </div>
+              </div>
+          </section>
+          
+          <!-- Day 10 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">10</div>
+              <div class="card-header">
+                  <h2>城堡与玫瑰</h2>
+                  <p>DAY 10: FUKUYAMA CASTLE</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-brands fa-fort-awesome"></i><div><strong>活动:</strong> 参观<strong>福山城</strong>和<strong>福山玫瑰公园</strong>。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-brands fa-fort-awesome"></i> 福山城 (Fukuyama Castle)</h4>
+                      <p>建于江户时代初期，曾是备后地区的政治中心。其一大特色是紧邻新干线站台，从列车上就能看到其雄伟身姿，被称为“离新干线最近的城堡”。城堡公园内绿树成荫，是市民休闲的好去处，也是了解福山历史的起点。</p>
+                      <h4><i class="fa-solid fa-seedling"></i> 福山玫瑰公园 (Fukuyama Rose Park)</h4>
+                      <p>作为“百万玫瑰之城”福山的象征，这座公园内种植了数百个品种、数千株玫瑰。每年五月，公园会举办盛大的玫瑰节，届时满园的玫瑰竞相开放，色彩斑斓，香气四溢，构成一片花的海洋。这里不仅展现了福山的城市特色，也为旅途增添了一抹浪漫与芬芳。</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+      <div id="shimonoseki-section" class="section-header">
+          <!-- Day 11 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">11</div>
+              <div class="card-header">
+                  <h2>抵达下关</h2>
+                  <p>DAY 11: ARRIVAL IN SHIMONOSEKI</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-train-subway"></i><div><strong>交通:</strong> 从福山站(Fukuyama Station)乘坐JR山阳新干线(Sanyo Shinkansen)至下关站(Shimonoseki Station)。</div></li>
+                      <li><i class="fa-solid fa-fish-fins"></i><div><strong>活动:</strong> 参观**唐户市场**，品尝新鲜的海鲜。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-fish"></i> 唐户市场 (Karato Market)</h4>
+                      <p>唐户市场是下关最著名的景点之一，以河豚交易闻名。这里不仅是海鲜批发市场，也是一个美食天堂。在周末和节假日，市场内会有“活气鱼活生鱼市场”(活きいき馬関街)，游客可以以非常实惠的价格品尝到新鲜的河豚刺身、寿司、海鲜丼以及其他各类海鲜。在这里，你可以一边享受美食，一边感受港口城市的活力与氛围。</p>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Day 12 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">12</div>
+              <div class="card-header">
+                  <h2>历史与海峡</h2>
+                  <p>DAY 12: HISTORY & STRAIT</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-torii-gate"></i><div><strong>活动:</strong> 参观**赤间神宫**、**日清讲和纪念馆**，并体验**关门海峡**的壮丽景色。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-landmark"></i> 赤间神宫 (Akama Shrine)</h4>
+                      <p>赤间神宫是一座纪念年幼的安德天皇的神社，其标志性的朱红色水天门在白色背景的映衬下显得尤为庄严。神宫内有一座“平家物语”的宝物殿，记录了源平合战的历史。它坐落在海边，可以俯瞰关门海峡，是感受历史沉淀和欣赏美景的绝佳地点。</p>
+                      <h4><i class="fa-solid fa-book"></i> 日清讲和纪念馆</h4>
+                      <p>位于赤间神宫旁，是《马关条约》的签订地。馆内展示了当年谈判的场景和相关历史资料，是了解中日近代史的重要一站。虽然历史沉重，但作为见证历史的地点，它具有重要的教育意义。</p>
+                      <h4><i class="fa-solid fa-water"></i> 关门海峡 (Kanmon Strait)</h4>
+                      <p>连接本州下关市与九州门司港的狭窄海峡。这里不仅是重要的航运要道，也是历史上的重要战场。你可以在海边漫步，欣赏来往船只，或通过关门海底人行隧道步行至九州一侧，感受跨越海峡的独特体验。</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+      <div id="oita-section" class="section-header">
+          <!-- Day 13 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">13</div>
+              <div class="card-header">
+                  <h2>前往由布院</h2>
+                  <p>DAY 13: HEADING TO YUFUIN</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-train"></i><div><strong>交通:</strong> 从下关站乘坐JR至博多站，换乘JR特急由布院之森号(Yufuin no Mori)前往由布院站(Yufuin Station)。</div></li>
+                      <li><i class="fa-solid fa-bed"></i><div><strong>活动:</strong> 抵达由布院，入住温泉旅馆，享受温泉时光。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-hot-tub-person"></i> 由布院 (Yufuin)</h4>
+                      <p>由布院是九州地区最受欢迎的温泉小镇之一，以其宁静的田园风光和独特的艺术氛围而闻名。小镇位于由布岳山脚下，街道两旁布满了特色小店、美术馆和咖啡馆。游客可以在这里漫步，享受悠闲的时光，并在温泉旅馆中放松身心，感受大自然的馈赠。</p>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Day 14 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">14</div>
+              <div class="card-header">
+                  <h2>由布院与别府</h2>
+                  <p>DAY 14: YUFUIN & BEPPU</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-person-walking"></i><div><strong>活动:</strong> 上午在由布院继续游览，下午前往**别府**。</div></li>
+                  </ul>
+                  <div class="attraction-details">
+                      <h4><i class="fa-solid fa-water"></i> 金鳞湖 (Kinrin Lake)</h4>
+                      <p>金鳞湖是由布院的地标性景点，因其湖底有温泉水和清水涌出，在早晨或傍晚湖面会因温差而产生水雾，景色如梦似幻。传说当夕阳西下时，湖面泛着金色的光芒，如同鱼鳞一般，因此得名。湖畔有一条小径，可以轻松环绕一周，沿途有许多独特的店铺和咖啡馆。</p>
+                      <h4><i class="fa-solid fa-fire-extinguisher"></i> 别府地狱巡游 (Beppu Hell Tour)</h4>
+                      <p>别府以其丰富的温泉资源而闻名，其中“地狱”是独特的自然景观。地狱巡游包括了海地狱、血池地狱等多个各具特色的温泉，它们并非用于泡汤，而是因其奇特的颜色和高温而得名。海地狱的湖水呈现出清澈的钴蓝色，血池地狱则因富含铁元素而呈红色，每处都令人叹为观止，是感受大自然鬼斧神工的绝佳体验。</p>
+                  </div>
+              </div>
+          </section>
+      </div>
+
+      <div id="fukuoka-section" class="section-header">
+          <!-- Day 15 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">15</div>
+              <div class="card-header">
+                  <h2>前往福冈</h2>
+                  <p>DAY 15: HEADING TO FUKUOKA</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-train-subway"></i><div><strong>交通:</strong> 从由布院站乘坐JR特急由布院之森号前往博多站。</div></li>
+                      <li><i class="fa-solid fa-cart-shopping"></i><div><strong>活动:</strong> 抵达福冈，休闲游，购物。</div></li>
+                  </ul>
+              </div>
+          </section>
+
+          <!-- Day 16 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">16</div>
+              <div class="card-header">
+                  <h2>福冈休闲游</h2>
+                  <p>DAY 16: SHOPPING IN FUKUOKA</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-bag-shopping"></i><div><strong>活动:</strong> 休闲游，购物。</div></li>
+                  </ul>
+              </div>
+          </section>
+          
+          <!-- Day 17 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">17</div>
+              <div class="card-header">
+                  <h2>福冈休闲游</h2>
+                  <p>DAY 17: SHOPPING IN FUKUOKA</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-bag-shopping"></i><div><strong>活动:</strong> 休闲游，购物。</div></li>
+                  </ul>
+              </div>
+          </section>
+          
+          <!-- Day 18 Card -->
+          <section class="day-card">
+              <div class="day-number-bg">18</div>
+              <div class="card-header">
+                  <h2>返程</h2>
+                  <p>DAY 18: DEPARTURE</p>
+              </div>
+              <div class="card-body">
+                  <ul data-itinerary>
+                      <li><i class="fa-solid fa-plane-departure"></i><div><strong>航班:</strong> 乘坐GJ6060航班（15:00-18:00），从福冈返回西安。</div></li>
+                  </ul>
+              </div>
+          </section>
+      </div>
+
+    </div>
+</body>
+</html>
