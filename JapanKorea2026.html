@@ -448,6 +448,22 @@
       }
 
 
+      .line-tag {
+          display: inline-block;
+          margin-left: 10px;
+          padding: 1px 10px;
+          border-radius: 999px;
+          font-size: 0.78rem;
+          font-weight: bold;
+          background: rgba(10, 147, 150, 0.12);
+          color: var(--highlight-color);
+          white-space: nowrap;
+      }
+      .line-tag.is-shinkansen {
+          background: rgba(255, 100, 100, 0.16);
+          color: #c0392b;
+      }
+
       .group-divider {
           text-align: center;
           margin: 50px 0 25px;
@@ -638,12 +654,16 @@
                 <div class="card-body">
                     <h3>需要购买车票的区间</h3>
                     <ul class="shinkansen-list">
-                        <li>博多 (Hakata) → 佐賀 (Saga)</li>
-                        <li>佐賀 (Saga) → 佐世保 (Sasebo)</li>
-                        <li>佐世保 (Sasebo) → 長崎 (Nagasaki)</li>
-                        <li>長崎 (Nagasaki) → 熊本 (Kumamoto)</li>
-                        <li>熊本 (Kumamoto) → 博多 (Hakata)</li>
+                        <li>博多 (Hakata) → 佐賀 (Saga)<span class="line-tag">在来線特急</span></li>
+                        <li>佐賀 (Saga) → 佐世保 (Sasebo)<span class="line-tag">在来線特急</span></li>
+                        <li>佐世保 (Sasebo) → 長崎 (Nagasaki)<span class="line-tag">在来線快速</span></li>
+                        <li>長崎 (Nagasaki) → 熊本 (Kumamoto)<span class="line-tag is-shinkansen">含新幹線</span></li>
+                        <li>熊本 (Kumamoto) → 博多 (Hakata)<span class="line-tag is-shinkansen">新幹線</span></li>
                     </ul>
+
+                    <div class="highlight">
+                        <strong>新幹線区间：</strong> 長崎 → 武雄温泉（新幹線かもめ）、新鳥栖 → 熊本（新幹線さくら）、熊本 → 博多（新幹線みずほ／つばめ）。其余三段是在来線特急或快速列车，不是新幹線。
+                    </div>
 
                     <h3>中途换乘站</h3>
                     <ul class="shinkansen-list">
@@ -657,11 +677,11 @@
                             <tr><th>日期</th><th>区间</th><th>车种</th><th>时间</th><th>票价（自由席）</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>10/7</td><td>博多 (Hakata) → 佐賀 (Saga)</td><td>特急リレーかもめ／かもめ</td><td>约 40 分</td><td>2,300 日元</td></tr>
-                            <tr><td>10/9</td><td>佐賀 (Saga) → 佐世保 (Sasebo)</td><td>特急みどり</td><td>约 1 小时 6 分</td><td>2,510 日元</td></tr>
-                            <tr><td>10/10</td><td>佐世保 (Sasebo) → 長崎 (Nagasaki)</td><td>快速シーサイドライナー</td><td>约 2 小时</td><td>1,930 日元</td></tr>
-                            <tr><td>10/14</td><td>長崎 (Nagasaki) → 熊本 (Kumamoto)</td><td>新幹線かもめ＋リレーかもめ＋新幹線さくら</td><td>约 3 小时</td><td>6,990 日元</td></tr>
-                            <tr><td>10/16</td><td>熊本 (Kumamoto) → 博多 (Hakata)</td><td>新幹線みずほ／つばめ</td><td>42～49 分</td><td>5,310 日元</td></tr>
+                            <tr><td>10/7</td><td>博多 (Hakata) → 佐賀 (Saga)</td><td>特急リレーかもめ／かもめ（在来線）</td><td>约 40 分</td><td>2,300 日元</td></tr>
+                            <tr><td>10/9</td><td>佐賀 (Saga) → 佐世保 (Sasebo)</td><td>特急みどり（在来線）</td><td>约 1 小时 6 分</td><td>2,510 日元</td></tr>
+                            <tr><td>10/10</td><td>佐世保 (Sasebo) → 長崎 (Nagasaki)</td><td>快速シーサイドライナー（在来線）</td><td>约 2 小时</td><td>1,930 日元</td></tr>
+                            <tr><td>10/14</td><td>長崎 (Nagasaki) → 熊本 (Kumamoto)</td><td>新幹線かもめ＋リレーかもめ＋新幹線さくら（<strong>含新幹線</strong>）</td><td>约 3 小时</td><td>6,990 日元</td></tr>
+                            <tr><td>10/16</td><td>熊本 (Kumamoto) → 博多 (Hakata)</td><td>新幹線みずほ／つばめ（<strong>新幹線</strong>）</td><td>42～49 分</td><td>5,310 日元</td></tr>
                             <tr><td colspan="4"><strong>合计</strong></td><td><strong>19,040 日元</strong></td></tr>
                         </tbody>
                     </table>
